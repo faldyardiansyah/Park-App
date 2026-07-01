@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parkcar_app/pages/payment_screen_page.dart';
 import 'package:parkcar_app/theme/app_pallete.dart';
 
 class TransactionScreenPage extends StatelessWidget {
@@ -144,6 +145,42 @@ class TransactionScreenPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: Container(
+                    padding : const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color : AppPallete.colorwhite.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: const Color(0xFFE0E0E0).withOpacity(0.5),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: AppPallete.colorprimary.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child : Icon(Icons.energy_savings_leaf_outlined, color: AppPallete.colorprimary, size: 16,),
+                        ),
+                        const SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Slot Premium Access', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w600, color: AppPallete.colorTextPrimary),),
+                            const SizedBox(height: 4),
+                            Text('A-12 Tesedia Fast Charging & Security', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: AppPallete.colorTextPrimary),),
+                          ]
+                        )
+                      ]
+                    ),
+                  )
                 ),
               ],
             ),
@@ -314,7 +351,9 @@ Widget _buildBottomPanel(String slot, String lantai) {
               width: double.infinity,
               height: 52,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(()=> PaymentScreenPage());
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppPallete.colorprimary,
                   shape: RoundedRectangleBorder(
@@ -322,14 +361,21 @@ Widget _buildBottomPanel(String slot, String lantai) {
                   ),
                   elevation: 0,
                 ),
-                child: const Text(
-                  'Continue to Payment',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.payment, color: Colors.white),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Pilih Metode Pembayaran',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                )
               ),
             ),
           ],
