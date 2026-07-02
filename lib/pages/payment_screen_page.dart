@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parkcar_app/pages/success_payment_screen_page.dart';
 import 'package:parkcar_app/theme/app_pallete.dart';
 
 class PaymentScreenPage extends StatelessWidget {
@@ -26,82 +27,84 @@ class PaymentScreenPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          child: Column(
-            children: [
-              _buildHeader(),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Metode Pembayaran',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Tambah Metode',
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            child: Column(
+              children: [
+                _buildHeader(),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Metode Pembayaran',
                       style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        color: AppPallete.colorprimary,
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  _buildPayment(
-                    Icons.credit_card,
-                    Colors.white,
-                    const Color(0xFF2F54F6),
-                    'Kartu Kredit',
-                    'Bayar dengan kartu kredit',
-                    true,
-                  ),
-                  _buildPayment(
-                    Icons.account_balance_wallet,
-                    Colors.white,
-                    const Color(0xFFFF4D4F),
-                    'E-Wallet',
-                    'Bayar dengan e-wallet',
-                    false,
-                  ),
-                  _buildPayment(
-                    Icons.money,
-                    Colors.white,
-                    const Color(0xFF52C41A),
-                    'Tunai',
-                    'Bayar dengan uang tunai',
-                    false,
-                  ),
-                  _buildPayment(
-                    Icons.payment_rounded,
-                    Colors.white,
-                    const Color(0xFFFF4D4F),
-                    'Google Play',
-                    'Bayar dengan Google Play',
-                    false,
-                  ),
-                  _buildPayment(
-                    Icons.account_balance,
-                    Colors.white,
-                    const Color(0xFF2F54F6),
-                    'Transfer Bank',
-                    'Bayar dengan Transfer Bank',
-                    false,
-                  ),
-                ],
-              ),
-              _buildPaymentDetails(),
-            ],
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Tambah Metode',
+                        style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: AppPallete.colorprimary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    _buildPayment(
+                      Icons.credit_card,
+                      Colors.white,
+                      const Color(0xFF2F54F6),
+                      'Kartu Kredit',
+                      'Bayar dengan kartu kredit',
+                      true,
+                    ),
+                    _buildPayment(
+                      Icons.account_balance_wallet,
+                      Colors.white,
+                      const Color(0xFFFF4D4F),
+                      'E-Wallet',
+                      'Bayar dengan e-wallet',
+                      false,
+                    ),
+                    _buildPayment(
+                      Icons.money,
+                      Colors.white,
+                      const Color(0xFF52C41A),
+                      'Tunai',
+                      'Bayar dengan uang tunai',
+                      false,
+                    ),
+                    _buildPayment(
+                      Icons.payment_rounded,
+                      Colors.white,
+                      const Color(0xFFFF4D4F),
+                      'Google Play',
+                      'Bayar dengan Google Play',
+                      false,
+                    ),
+                    _buildPayment(
+                      Icons.account_balance,
+                      Colors.white,
+                      const Color(0xFF2F54F6),
+                      'Transfer Bank',
+                      'Bayar dengan Transfer Bank',
+                      false,
+                    ),
+                  ],
+                ),
+                _buildPaymentDetails(),
+              ],
+            ),
           ),
         ),
       ),
@@ -110,6 +113,15 @@ class PaymentScreenPage extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             print('Bayar Sekarang clicked!');
+            Get.to(()=> const SuccessPaymentScreenPage());
+            Get.snackbar(
+              'Pembayaran Berhasil',
+              'Terima kasih telah melakukan pembayaran.',
+              snackPosition: SnackPosition.TOP,
+              duration: const Duration(seconds: 1),
+              backgroundColor: AppPallete.colorprimary,
+              colorText: Colors.white,
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppPallete.colorprimary,

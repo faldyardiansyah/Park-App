@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parkcar_app/models/profile.dart';
+import 'package:parkcar_app/pages/detail_profile_page.dart';
 import 'package:parkcar_app/theme/app_pallete.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -41,7 +42,9 @@ class ProfilePage extends StatelessWidget {
           children: [
             _buildHeaderCustom(),
             Transform.translate(
-                offset: const Offset(0, -20), child: buildMenuCard(groupOne)),
+              offset: const Offset(0, -20),
+              child: buildMenuCard(groupOne),
+            ),
             buildMenuCard(groupTwo),
             buildMenuCard(groupThere),
             const SizedBox(height: 20),
@@ -205,6 +208,7 @@ Widget buildMenuCard(List<Profile> items) {
             title: Text(item.title),
             subtitle: Text(item.subtitle),
             trailing: const Icon(Icons.chevron_right),
+            onTap: item.onTap,
           );
         },
       ),
